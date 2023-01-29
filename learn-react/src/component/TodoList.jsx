@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
 
 const todoList = [
-  { id: 1, text: "컴포넌트 만들기", done: false },
+  { id: 1, text: "컴포넌트 만들기", done: true },
   { id: 2, text: "상태 관리하기", done: false },
   { id: 3, text: "배열 렌더링하기", done: false },
 ];
 
-let result = todoList.map((todo) => <li>{todo.text}</li>);
 /* [
   <li>컴포너트 만들기</li>,
   <li>상태 관리하기</li>,
@@ -46,6 +45,18 @@ function TodoList() {
       setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const handelToggle = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        /*
+        if (todo.id === id) return { ...todo, done: !todo.done };
+        else return todo;
+        */
+        return todo.id === id ? { ...todo, done: !todo.done } : todo;
+      })
+    );
+  };
+
   return (
     <div>
       <form onClick={handleSubmit}>
@@ -59,10 +70,23 @@ function TodoList() {
       </form>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>
-            {todo.text}
-            {""}
-            <button onClick={() => handleRemove(todo.id)}>삭제</button>
+          <li
+            key={todo.id}
+            style={{
+              textDecoration: todo.done && "line-through",
+              userSelect: "none",
+            }}
+            onClick={() => handelToggle(todo.id)}
+          >
+            <span>{todo.text}</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // 이벤트 전파를 더 이상 하진 않는다.
+                handleRemove(todo.id);
+              }}
+            >
+              삭제
+            </button>
           </li>
         ))}
       </ul>
