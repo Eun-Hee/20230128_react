@@ -1,13 +1,17 @@
 import { useReducer } from "react";
 
 function reducer(state, action) {
+  //비구조로 변경 가능함
+  const { type, amount } = action;
+
   switch (action.type) {
     case "increase":
       return { ...state, count: state.count + state.amount };
     case "decrease":
       return { ...state, count: state.count - state.amount };
     case "change_amount":
-      return { ...state, amount: action.amount };
+      //return { ...state, amount: action.amount };
+      return { ...state, amount }; // 비구조로 변경
     default:
       return state;
   }
