@@ -1,6 +1,7 @@
 // 할일들을 나열해주는 역할
 
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
+import { CountContext } from "../../App";
 
 function countUndoneTodo(todos) {
   console.log("안 한일 세는중...");
@@ -35,6 +36,9 @@ function TodoList({ todos, onRemove, onToggle }) {
 }
 
 function TodoItem({ todo, onRemove, onToggle }) {
+  const count = useContext(CountContext);
+
+  console.log(count);
   //{
   /*const hanleRemove = (id) => {
     if (window.confirm("삭제하시겠습니까?")) dispatch({ type: "remove", id });

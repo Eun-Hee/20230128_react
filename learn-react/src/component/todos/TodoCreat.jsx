@@ -1,17 +1,26 @@
 //import TodoList from "./TodoList";
 
-//import { useRef, useState } from "react";
+import React, { useState } from "react";
 
 // 입력창...
-function TodoCreat({ onChange, onSubmit, text }) {
+function TodoCreat({ onSubmit }) {
+  const [text, setText] = useState("");
+
+  const handleText = (e) => setText(() => e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(text);
+  };
+
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input type="text" onChange={onChange} value={text} />
+      <form onSubmit={handleSubmit}>
+        <input type="text" onChange={handleText} value={text} />
         <button>등록</button>
       </form>
     </div>
   );
 }
 
-export default TodoCreat;
+export default React.memo(TodoCreat);

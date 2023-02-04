@@ -1,6 +1,10 @@
-import { useEffect, useReducer, useState, useRef, useCallback } from "react";
-//import { act } from "react-dom/test-utils";
-//import Counter from "./Counter";
+import {
+  useEffect,
+  useReducer,
+  useRef,
+  useCallback,
+  createContext,
+} from "react";
 import TodoCreat from "./TodoCreat";
 import TodoList from "./TodoList";
 
@@ -29,24 +33,18 @@ const initialState = [
   { id: 3, text: "useCallback, useMemo 배우기", done: false },
 ];
 
+const TodoStatContext = createContext();
+
 function Todos() {
   // useReducer(리듀서함수, 초기값) => 상태값, 디스패치 함수 반환
   const [todos, dispatch] = useReducer(reducer, initialState);
-  const [text, setText] = useState("");
-  const handleText = (e) => setText(e.target.value);
 
   const nextId = useRef(4);
 
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      // dispatch({ type: "create", id : nextId.current++, text : text });
-      dispatch({ type: "create", id: nextId.current++, text });
-      console.log(todos);
-      setText(() => "");
-    },
-    [text]
-  );
+  const handleSubmit = useCallback((text) => {
+    // dispatch({ type: "create", id : nextId.current++, text : text });
+    dispatch({ type: "create", id: nextId.current++, text });
+  }, []);
 
   const hanleRemove = useCallback((id) => {
     if (window.confirm("삭제하시겠습니까?")) dispatch({ type: "remove", id });
@@ -62,7 +60,7 @@ function Todos() {
 
   return (
     <div>
-      <TodoCreat onChange={handleText} onSubmit={handleSubmit} text={text} />
+      <TodoCreat onSubmit={handleSubmit} />
       {/*<TodoCreat dispatch={dispatch} /> */}
       <TodoList todos={todos} onRemove={hanleRemove} onToggle={handleToggle} />
 
