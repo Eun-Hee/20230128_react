@@ -1,25 +1,22 @@
-function TodoList() {
+function TodoList(todos) {
   return (
     <div>
       <ul>
-        <TodoItem/>
-        <TodoItem/>
-        <TodoItem/>
-        <TodoItem/>
+        {todos.map(({ todo }) => (
+          <TodoItem todo={todo} />
+        ))}
       </ul>
     </div>
   );
 }
 
-export default TodoItem;
-
-function TodoItem() {
-    return (
-        <li>
-            <span>해야할일</span>
-            <button>삭제</button>
-        </li>
-    );
+function TodoItem({ todo }) {
+  return (
+    <li>
+      <span>{todo.text}</span>
+      <button>삭제</button>
+    </li>
+  );
 }
 
-export default TodoItem
+export default TodoList;
