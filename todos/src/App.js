@@ -7,7 +7,8 @@ function App() {
   return (
     <div>
       <Button text="로그인" bgColor="red" />
-      <Button text="회원가입" bgColor="blue" big />
+      {/* bgColor="blue"를 지우면 컬러가 다른 컬러로 적용됨 */}
+      <Button text="회원가입" big />
     </div>
   );
 }

@@ -1,4 +1,6 @@
+import { darken, lighten } from "polished";
 import styled, { css } from "styled-components";
+import { theme } from "../styles";
 
 function Button({ text, bgColor, big }) {
   return (
@@ -31,7 +33,10 @@ const StyledButton = styled.div`
 
   &:hover {
     // div 태그가 됨
-    background-color: black;
+    background-color: ${({ bgColor, theme }) => {
+      //return bgColor ? lighten(0.1, bgColor) : lighten(0.1, theme.colors.main);
+      return bgColor ? darken(0.1, bgColor) : darken(0.1, theme.colors.main); // 클릭하고 있는 동안은 어둡게 표현됨
+    }};
   }
 
   /* 첫번째 요소 빼고 적용할 때 */
