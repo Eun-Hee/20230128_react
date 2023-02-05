@@ -46,6 +46,14 @@ const StyledButton = styled.button`
     // div 태그가 됨
     background-color: ${({ bgColor, theme }) => {
       //return bgColor ? lighten(0.1, bgColor) : lighten(0.1, theme.colors.main);
+      return bgColor ? lighten(0.1, bgColor) : lighten(0.1, theme.colors.main); // 클릭하고 있는 동안은 어둡게 표현됨
+    }};
+  }
+
+  &:active {
+    // div 태그가 됨
+    background-color: ${({ bgColor, theme }) => {
+      //return bgColor ? lighten(0.1, bgColor) : lighten(0.1, theme.colors.main);
       return bgColor ? darken(0.1, bgColor) : darken(0.1, theme.colors.main); // 클릭하고 있는 동안은 어둡게 표현됨
     }};
   }

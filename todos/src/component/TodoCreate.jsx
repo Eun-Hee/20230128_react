@@ -16,11 +16,11 @@ const Container = styled.div`
 `;
 
 const Input = styled.input`
-    width: 100%;
-    outline: none;
+  width: 100%;
+  outline: none;
   padding: 5px;
   border: 1px solid;
-  border-color: {({ $theme }) => theme.colors.border};
+  border-color: ${({ theme }) => theme.colors.border};
 `;
 
 export default TodoCreate;
