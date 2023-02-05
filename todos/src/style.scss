@@ -1,0 +1,16 @@
+$main_color: blue;
+
+header {
+  width: 200px;
+  height: 200px;
+
+  .gnbList {
+    display: flex;
+    li {
+      color: $main_color;
+      &:hover {
+        background-color: black; // &상위 li 의미함
+      }
+    }
+  }
+}
