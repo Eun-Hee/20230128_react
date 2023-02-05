@@ -27,10 +27,11 @@ function App() {
     <div>
       <Container>
         <GlobalStyle />
-        {/*<TodoHeader />
+        <TodoHeader />
         <TodoList />
-  <TodoCreate /> */}
-        <Flex></Flex>
+        <TodoCreate />
+
+        {/* <Flex></Flex> */}
       </Container>
     </div>
   );

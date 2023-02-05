@@ -5,7 +5,7 @@ function TodoCreate() {
   return (
     <Container>
       <Input type="text" />
-      <Button>등록</Button>
+      <Button text="등록" />
     </Container>
   );
 }
