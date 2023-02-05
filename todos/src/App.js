@@ -1,16 +1,42 @@
-import { ThemeProvider } from "styled-components";
 import "./App.css"; // webpack이라는 도구가 css, 이미지 파일 등 정적파일 로딩을 할 수 있게 해준다.
+import TodoHeader from "./component/TodoHeader";
+import TodoList from "./component/TodoList";
+import TodoCreate from "./component/TodoCreate";
+import styled, { createGlobalStyle } from "styled-components";
 
-import Button from "./component/Button";
+const GlobalStyle = createGlobalStyle`
+    *{
+        margin : 0;
+        padding : 0;
+        box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: non;
+        color : inherit;
+    }
+
+    li {
+        list-style: none;
+    }
+`;
 
 function App() {
   return (
     <div>
-      <Button text="로그인" bgColor="red" />
-      {/* bgColor="blue"를 지우면 컬러가 다른 컬러로 적용됨 */}
-      <Button text="회원가입" big />
+      <Container>
+        <GlobalStyle />
+        <TodoHeader />
+        <TodoList />
+        <TodoCreate />
+      </Container>
     </div>
   );
 }
+
+const Container = styled.div`
+  border: 2px solid;
+  border-color: ${({ theme }) => theme.colors.border};
+`;
 
 export default App;

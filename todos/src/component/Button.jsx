@@ -55,4 +55,8 @@ const StyledButton = styled.div`
   //margin-bottom: 10px;
 `;
 
+export const BigButton = styled(StyledButton)`
+  width: 200px;
+  padding: 20px;
+`;
 export default Button;
