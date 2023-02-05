@@ -33,39 +33,24 @@ const initialState = [
   { id: 3, text: "useCallback, useMemo 배우기", done: false },
 ];
 
-const TodoStatContext = createContext();
+// stat값(TodoStatContext) 전달
+export const TodoStateContext = createContext(null);
+export const TodoDispatchContext = createContext(null);
 
 function Todos() {
   // useReducer(리듀서함수, 초기값) => 상태값, 디스패치 함수 반환
   const [todos, dispatch] = useReducer(reducer, initialState);
 
-  const nextId = useRef(4);
-
-  const handleSubmit = useCallback((text) => {
-    // dispatch({ type: "create", id : nextId.current++, text : text });
-    dispatch({ type: "create", id: nextId.current++, text });
-  }, []);
-
-  const hanleRemove = useCallback((id) => {
-    if (window.confirm("삭제하시겠습니까?")) dispatch({ type: "remove", id });
-  }, []);
-
-  const handleToggle = useCallback(
-    (id) => dispatch({ type: "toggle", id }),
-    []
-  );
-  useEffect(() => {}, []);
-
-  //const handleCreate = () => {};
-
   return (
-    <div>
-      <TodoCreat onSubmit={handleSubmit} />
-      {/*<TodoCreat dispatch={dispatch} /> */}
-      <TodoList todos={todos} onRemove={hanleRemove} onToggle={handleToggle} />
+    <TodoStateContext.Provider value={todos}>
+      <TodoDispatchContext.Provider value={dispatch}>
+        <div>
+          <TodoCreat />
 
-      {/* <Counter /> */}
-    </div>
+          <TodoList />
+        </div>
+      </TodoDispatchContext.Provider>
+    </TodoStateContext.Provider>
   );
 }
 

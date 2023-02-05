@@ -1,7 +1,8 @@
 // 할일들을 나열해주는 역할
 
 import React, { useContext, useMemo } from "react";
-import { CountContext } from "../../App";
+//import { CountContext } from "../../App";
+import { TodoDispatchContext, TodoStateContext } from "./Todos";
 
 function countUndoneTodo(todos) {
   console.log("안 한일 세는중...");
@@ -9,8 +10,11 @@ function countUndoneTodo(todos) {
 }
 
 // {todos : [], avtive : false}
-function TodoList({ todos, onRemove, onToggle }) {
+function TodoList(/*{ onRemove, onToggle }*/) {
+  const todos = useContext(TodoStateContext);
+
   // 의존성 배열에 있는 값이 변했을 때에만 다시 연산한다.
+
   const undoneCount = useMemo(() => {
     return countUndoneTodo(todos);
   }, [todos]);
@@ -26,8 +30,8 @@ function TodoList({ todos, onRemove, onToggle }) {
           <TodoItem
             key={todo.id}
             todo={todo}
-            onRemove={onRemove}
-            onToggle={onToggle}
+            //onRemove={onRemove}
+            //onToggle={onToggle}
           />
         ))}
       </ul>
@@ -35,10 +39,10 @@ function TodoList({ todos, onRemove, onToggle }) {
   );
 }
 
-function TodoItem({ todo, onRemove, onToggle }) {
-  const count = useContext(CountContext);
+function TodoItem({ todo /*, onRemove, onToggle*/ }) {
+  //const count = useContext(CountContext);
+  const dispatch = useContext(TodoDispatchContext);
 
-  console.log(count);
   //{
   /*const hanleRemove = (id) => {
     if (window.confirm("삭제하시겠습니까?")) dispatch({ type: "remove", id });
@@ -50,11 +54,19 @@ function TodoItem({ todo, onRemove, onToggle }) {
     <li>
       <span
         style={{ textDecoration: todo.done && "line-through" }}
-        onClick={() => onToggle(todo.id)}
+        // onClick={() => onToggle(todo.id)}
+        // onToggle에 있는 값을 그대로 적음
+        onClick={() => dispatch({ type: "toggle", id: todo.id })}
       >
         {todo.text}
       </span>
-      <button onClick={() => onRemove(todo.id)}>삭제</button>
+      <button
+        onClick={() =>
+          dispatch({ type: "remove", id: todo.id })
+        } /*onRemove(todo.id)}*/
+      >
+        삭제
+      </button>
     </li>
   );
 }

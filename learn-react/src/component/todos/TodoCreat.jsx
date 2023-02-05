@@ -1,16 +1,20 @@
 //import TodoList from "./TodoList";
 
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+//import { TodoDispatchContext } from "./Todos";
+import { TodoDispatchContext } from "./Todos";
 
 // 입력창...
 function TodoCreat({ onSubmit }) {
   const [text, setText] = useState("");
+  const dispatch = useContext(TodoDispatchContext);
+  const nextId = useRef(4);
 
   const handleText = (e) => setText(() => e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(text);
+    dispatch({ type: "creat", id: nextId.current++, text });
   };
 
   return (
