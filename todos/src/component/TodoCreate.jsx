@@ -1,10 +1,26 @@
+import styled from "styled-components";
+import Button from "./Button";
+
 function TodoCreate() {
   return (
-    <div>
-      <input type="text" />
-      <button>등록</button>
-    </div>
+    <Container>
+      <Input type="text" />
+      <Button>등록</Button>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  padding: 10px;
+  text-align: center;
+`;
+
+const Input = styled.input`
+    width: 100%;
+    outline: none;
+  padding: 5px;
+  border: 1px solid;
+  border-color: {({ $theme }) => theme.colors.border};
+`;
 
 export default TodoCreate;

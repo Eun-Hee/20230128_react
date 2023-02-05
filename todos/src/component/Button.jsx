@@ -1,6 +1,6 @@
 import { darken, lighten } from "polished";
 import styled, { css, keyframes } from "styled-components";
-import { theme } from "../styles";
+//import { theme } from "../styles";
 
 function Button({ text, bgColor, big }) {
   return (
@@ -16,7 +16,7 @@ const slideUp = keyframes`
     }
 `;
 
-const StyledButton = styled.div`
+const StyledButton = styled.button`
   width: 100px;
   padding: 5px 0;
   border-radius: 10%;
@@ -26,6 +26,8 @@ const StyledButton = styled.div`
     bgColor || theme.colors.main}; // 비구조할당
   color: "#fff";
   text-align: center;
+  outline: none;
+  border: none;
 
   cursor: pointer;
   user-select: none;
