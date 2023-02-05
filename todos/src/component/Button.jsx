@@ -1,5 +1,5 @@
 import { darken, lighten } from "polished";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { theme } from "../styles";
 
 function Button({ text, bgColor, big }) {
@@ -9,6 +9,13 @@ function Button({ text, bgColor, big }) {
     </StyledButton>
   );
 }
+
+const slideUp = keyframes`
+    from {
+        transform: translateY(20px);
+    }
+`;
+
 const StyledButton = styled.div`
   width: 100px;
   padding: 5px 0;
@@ -22,6 +29,8 @@ const StyledButton = styled.div`
 
   cursor: pointer;
   user-select: none;
+
+  animation: ${slideUp} 1s;
 
   ${({ big }) =>
     big &&
