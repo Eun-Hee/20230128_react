@@ -1,0 +1,45 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "text": "Todos 컴포너트 만들기",
+      "done": true
+    },
+    {
+      "id": 2,
+      "text": "json-server로 api 연동 연습",
+      "done": true
+    },
+    {
+      "text": "bfb c b",
+      "done": false,
+      "id": 3
+    },
+    {
+      "text": "cvcvcvc",
+      "done": false,
+      "id": 4
+    },
+    {
+      "text": "cvcvcvc",
+      "done": false,
+      "id": 5
+    },
+    {
+      "text": "vccbb ccb bc",
+      "done": false,
+      "id": 6
+    },
+    {
+      "text": "c bc bccb b",
+      "done": false,
+      "id": 7
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "seok"
+    }
+  ]
+}
