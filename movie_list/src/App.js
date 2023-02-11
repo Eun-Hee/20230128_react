@@ -2,9 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./component/practice/router/Home";
 import About from "./component/practice/router/About";
 import Header from "./component/practice/router/Header";
-import Post from "./component/post/Post";
-import PostEdit from "./component/post/PostEdit";
-import PostList from "./component/post/PostList";
+import Post from "./component/practice/post/Post";
+import PostEdit from "./component/practice/post/PostEdit";
+import PostList from "./component/practice/post/PostList";
 
 function App() {
   return (
