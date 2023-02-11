@@ -10,6 +10,8 @@ function Todos() {
     isError: false,
   });
 
+  const { data, isLoading, isError } = todos; // 비구조할당
+
   const fetchData = async () => {
     // await : Promise가 resolve되기 전까지 다음 코드가 실행되지 않는다.
     const res = await fetch("http://localhost:5000/todos"); // fech()는 기본적으로 get 요청을 한다.
@@ -86,7 +88,8 @@ function Todos() {
     fetchData();
   }, []);
 
-  if (todos.isLoading) return <div>로딩중....</div>;
+  if (isLoading) return <div>로딩중....</div>;
+  // if (isLoading) return <div>로딩중....</div>; 비구조할당시 이렇게 수정
 
   if (todos.isError) return <div>에러 발생!</div>;
   return (
