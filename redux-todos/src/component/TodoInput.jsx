@@ -9,8 +9,8 @@ function TodoInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //  dispatch(createTodo(text));
-    createTodo();
+    dispatch(createTodo(text));
+    // console.log(createTodo());
   };
   return (
     <div>
