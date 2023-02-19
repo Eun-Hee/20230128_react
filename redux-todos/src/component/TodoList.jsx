@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTodo } from "../redux/todos";
+import { removeTodo, toggleTodo } from "../redux/todos";
 
 function TodoList() {
   const todos = useSelector((state) => state.todos);
@@ -22,6 +22,10 @@ function TodoItem({ todo }) {
     dispatch(toggleTodo(id));
   };
 
+  const handleRemove = () => {
+    dispatch(removeTodo(id));
+  };
+
   return (
     <li>
       <span
@@ -30,7 +34,7 @@ function TodoItem({ todo }) {
       >
         {text}
       </span>
-      <button>삭제</button>
+      <button onClick={handleRemove}>삭제</button>
     </li>
   );
 }

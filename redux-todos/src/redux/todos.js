@@ -1,3 +1,4 @@
+import { nanoid } from "@reduxjs/toolkit";
 import produce from "immer";
 
 const initialState = [
@@ -16,6 +17,21 @@ export const toggleTodo = (id) => {
   return {
     type: TOGGLE,
     id,
+  };
+};
+
+export const removeTodo = (id) => {
+  return {
+    type: REMOVE,
+    id,
+  };
+};
+
+export const createTodo = (text) => {
+  return {
+    type: CREATE,
+    id: nanoid(),
+    text,
   };
 };
 

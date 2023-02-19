@@ -4,12 +4,14 @@ import Counter from "./component/Counter";
 import Todos from "./component/Todos";
 import { counterReducer } from "./redux/counter";
 import { todoReducer } from "./redux/todos";
+import { todoToolkitReducer } from "./redux/todos_toolkit";
 
 const store = configureStore({
   // 속성 이름이 상태값의 이름이 된다.
   reducer: {
     counter: counterReducer,
-    todos: todoReducer,
+    //todos: todoReducer,
+    todos: todoToolkitReducer,
   },
 });
 
