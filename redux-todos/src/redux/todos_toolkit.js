@@ -1,4 +1,4 @@
-import { createAction, nanoid } from "@reduxjs/toolkit";
+import { createAction, createReducer, nanoid } from "@reduxjs/toolkit";
 import produce from "immer";
 
 // src/redus/todos_toolkit.js
@@ -20,6 +20,24 @@ export const createTodo = createAction("todos/create", function (text) {
 export const removeTodo = createAction("todos/remove");
 
 export const toggleTodo = createAction("todos/toggle");
+
+export const todoReducer = createReducer([], (builder) => {
+  builder
+    .addCase(createTodo, (state, action) => {
+      // immer가 자동으로 적용되어 있다.
+      state.push(action.payload);
+    })
+    .addCase(toggleTodo, (state, action) => {
+      const todo = state.find((todo) => todo.id === action.payload);
+      todo.done = !todo.done;
+    })
+    .addCase(removeTodo, (state, action) => {
+      // 해당 아이디의 todo의 index값 구해서 splice로 원본에서 추출
+      const index = state.findIndex((todo) => todo.id === action.payload);
+      state.splice(index, 1);
+      //return state.filter((todo) => todo.id !== action.payload);
+    });
+});
 
 export function todoToolkitReducer(state = [], action) {
   switch (action.type) {
