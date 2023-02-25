@@ -1,11 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
-import "./App.css";
 import Header from "./components/common/Header";
-import Home from "./components/common/pages/Home";
-import Movie from "./components/common/pages/Movie";
-import People from "./components/common/pages/People";
-import TV from "./components/common/pages/TV";
+import Home from "./components/pages/Home";
+import Movie from "./components/pages/Movie";
+import People from "./components/pages/People";
+import TV from "./components/pages/TV";
 
 function App() {
   return (

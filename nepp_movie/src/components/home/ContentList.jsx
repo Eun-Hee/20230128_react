@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { tmdbAxios } from "../../api/tmdb";
+import ContentItem from "./ContentItem";
 
 function ContentList({ title, initialState }) {
   const [filters, setFilter] = useState(initialState);
@@ -21,7 +22,7 @@ function ContentList({ title, initialState }) {
   const fetchData = async () => {
     //const res = await tmdbAxios.get("/trending/movie/week");
 
-    // const results = res.data.results;
+    //const results = res.data.results;
     //const { results } = res.data;
 
     //console.log(results);
@@ -57,12 +58,15 @@ function ContentList({ title, initialState }) {
           ))}
         </FilterList>
       </ContentHeader>
-      <ul>
+      <ContentWrapper>
         {/* 실제 데이터 반영해서 제목만 출력하기 */}
+        {items.map((item) => (
+          <ContentItem key={item.id} item={item} />
+        ))}
+        {/*<li>제목</li>
         <li>제목</li>
-        <li>제목</li>
-        <li>제목</li>
-      </ul>
+        <li>제목</li>*/}
+      </ContentWrapper>
     </Container>
   );
 }
@@ -91,6 +95,10 @@ const FilterItem = styled.li`
       background-color: black;
       color: #fff;
     `}
+`;
+
+const ContentWrapper = styled.ul`
+  display: flex;
 `;
 
 export default ContentList;

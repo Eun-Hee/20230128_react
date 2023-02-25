@@ -1,4 +1,4 @@
-import ContentList from "../../home/ContentList";
+import ContentList from "../home/ContentList";
 
 const filters = {
   trending: [

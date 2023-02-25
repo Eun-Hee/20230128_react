@@ -9,4 +9,4 @@ export const tmdbAxios = axios.create({
 });
 
 // tmdbAxios.get("trending/tv/week")
-//  => "https://api.themoviedb.org/3."
+//  => "https://api.themoviedb.org/3/"
