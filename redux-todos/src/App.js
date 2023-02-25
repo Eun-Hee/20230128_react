@@ -5,7 +5,7 @@ import Todos from "./component/Todos";
 import { counterReducer } from "./redux/counter";
 // import { todoReducer } from "./redux/todos";
 //import { todoToolkitReducer, todoReducer } from "./redux/todos_toolkit";
-import { todoToolkitReducer, todoReducer } from "./redux/todoSlice";
+import { todoReducer } from "./redux/todoSlice";
 
 const store = configureStore({
   // 속성 이름이 상태값의 이름이 된다.
