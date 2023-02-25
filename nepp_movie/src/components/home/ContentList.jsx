@@ -5,6 +5,9 @@ import { tmdbAxios } from "../../api/tmdb";
 import ContentItem from "./ContentItem";
 
 function ContentList({ title, initialState }) {
+  // filers의 값이 바뀔 때마다 get 요청 다시!
+  //    => active가 true인 filter의 url 사용!
+  //    => 특정 값이 바뀌 때 마다 실행
   const [filters, setFilter] = useState(initialState);
   const [items, setItems] = useState([]);
 
@@ -19,7 +22,12 @@ function ContentList({ title, initialState }) {
     );
   };
 
-  const fetchData = async () => {
+  const fetchData = async (url) => {
+    // 비구조화 할당 중첩해서 사용
+    const {
+      data: { results },
+    } = await tmdbAxios.get(url);
+    //}= await tmdbAxios.get("/trending/movie/week")
     //const res = await tmdbAxios.get("/trending/movie/week");
 
     //const results = res.data.results;
@@ -27,20 +35,22 @@ function ContentList({ title, initialState }) {
 
     //console.log(results);
 
-    const { data } = await tmdbAxios.get("/trending/movie/week");
-    const { results } = data;
+    //const { data } = await tmdbAxios.get("/trending/movie/week");
+    //const { results } = data;
     setItems(results);
   };
 
   useEffect(() => {
-    fetchData();
+    // filters의 값이 변할 때마다 실행
+    const { url } = filters.find((filter) => filter.active);
+    fetchData(url);
     //tmdbAxios.get("/trending/movie/week").then((res) => console.log(res));
     //   axios
     //     .get(
     //       "https://api.themoviedb.org/3/trending/movie/week?api_key=d57203ff00ea90c015eca21638f4116e"
     //     )
     //     .then((res) => console.log(res));
-  }, []);
+  }, [filters]);
 
   return (
     <Container>
@@ -99,6 +109,9 @@ const FilterItem = styled.li`
 
 const ContentWrapper = styled.ul`
   display: flex;
+  padding: 20px;
+  overflow-x: auto;
+  gap: 20px;
 `;
 
 export default ContentList;
