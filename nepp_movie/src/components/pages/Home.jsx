@@ -6,13 +6,17 @@ const filters = {
     { id: 2, text: "tv", active: false, url: "/trending/tv/week" },
     //{ id: 3, text: "people", active: false, url: "/trending/person/week" },
   ],
+  popular: [
+    { id: 1, text: "tv", active: true, url: "/tv/popular" },
+    { id: 2, text: "movie", active: false, url: "/movie/popular" },
+  ],
 };
 
 function Home() {
   return (
     <div>
       <ContentList title="트렌딩" initialState={filters.trending} />
-      {/*<ContentList title="뭐가 인기 있니?" /> */}
+      <ContentList title="뭐가 인기 있니?" initialState={filters.popular} />
     </div>
   );
 }
