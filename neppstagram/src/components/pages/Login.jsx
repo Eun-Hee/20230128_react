@@ -1,21 +1,47 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { login } from "../../api/auth";
+import { useInputs } from "../../hooks/useInputs";
 import Button from "../common/Button";
 import Input from "../common/Input";
 
 function Login() {
+  const [inputs, handleInputs] = useInputs({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { token } = await login(inputs);
+
+    if (token) {
+      navigate("/");
+    }
+
+    console.log(token);
+  };
+
+  //   console.log(inputs);
 
   return (
     <Container>
       <h3>로그인</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <InputWrapper>
-          <Input type="text" name="email" placeholder="이메일을 입력해주세요" />
+          <Input
+            type="text"
+            name="email"
+            placeholder="이메일을 입력해주세요"
+            onChange={handleInputs}
+          />
           <Input
             type="password"
             name="password"
             placeholder="비밀번호를 입력해주세요"
+            onChange={handleInputs}
           />
         </InputWrapper>
         <BtnWrapper>
