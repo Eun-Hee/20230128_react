@@ -36,7 +36,7 @@ export const login = async (form) => {
     const { data } = await authAxios.post("/signin", form);
 
     // 로그인 성공시 헤더에 토큰값 저장
-    authAxios.defaults.headers.common.Authorization = `Beare ${data.token}`;
+    authAxios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
     localStorage.setItem("token", data.token);
 
     return data;
