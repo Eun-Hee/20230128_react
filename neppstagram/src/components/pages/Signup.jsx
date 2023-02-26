@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { signUp } from "../../api/auth";
 import { useInputs } from "../../hooks/useInputs";
@@ -11,8 +12,17 @@ function Signup() {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { success } = await signUp(inputs);
+
+    if (success) {
+      alert("회원가입에 성공했습니다.");
+      navigate("/auth/login");
+    }
+
     const result = await signUp(inputs);
 
     console.log(result);
@@ -44,7 +54,13 @@ function Signup() {
         </InputWrapper>
         <BtnWrapper>
           <Button>회원가입</Button>
-          <Button bgColor="red">취소</Button>
+          <Button
+            bgColor="red"
+            type="button"
+            onClick={() => navigate("/auth/login")}
+          >
+            취소
+          </Button>
         </BtnWrapper>
       </form>
     </Container>

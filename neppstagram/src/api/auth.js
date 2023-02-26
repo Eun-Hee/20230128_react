@@ -12,6 +12,7 @@ export const signUp = async (form) => {
     return data;
   } catch (e) {
     console.log(e);
+    alert("입력 양식을 확인해주세요");
   }
 
   // const res = authAxios.post("", form);
