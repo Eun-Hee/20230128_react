@@ -21,7 +21,7 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link tod="/serach">
+              <Link to="/search">
                 <AiOutlineSearch size={24} />
               </Link>
             </li>
@@ -44,6 +44,7 @@ function Header() {
 
 const Container = styled.header`
   padding: 10px 0;
+  background-color: #fff;
 `;
 
 const Wrapper = styled.div`
@@ -54,12 +55,13 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-const Input = styled.input``;
+const Input = styled.input`
+  /* margin-left: 60px; */
+`;
 
 const Logo = styled.h1``;
 
 const Gnb = styled.nav`
-  flex: 1;
   ul {
     display: flex;
     flex: 1;
