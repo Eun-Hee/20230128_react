@@ -9,7 +9,7 @@ export const authAxios = axios.create({
 const token = localStorage.getItem("token");
 
 if (token) {
-  authAxios.defaults.headers.common.Authorization = `Beare ${token}`;
+  authAxios.defaults.headers.common.Authorization = `Bearer ${token}`;
 }
 
 //export const signup = (name, email, password) => {
@@ -45,19 +45,20 @@ export const login = async (form) => {
   }
 };
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = async (form) => {
   try {
-    // const { data } = await authAxios.get("/current");
-    // console.log(data);
-    const { data } = await authAxios.get("/current", {
-      headers: {
-        Authorization:
-          "Bearer " +
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzQ1QGdtaWwuY29tIiwic3ViIjo1MSwiaWF0IjoxNjc3MzkzNjgxLCJleHAiOjE2Nzc0ODAwODF9.bNsR8-Sg8TnkKdpewzcmieHnd8VRXjly-S8c3adCGPw",
-      },
-    });
-    return data;
+    const { data } = await authAxios.get("/current");
+    console.log(data);
+    // const { data } = await authAxios.get("/current", {
+    //   headers: {
+    // Authorization:
+    //   "Bearer " +
+    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzQ1QGdtaWwuY29tIiwic3ViIjo1MSwiaWF0IjoxNjc3MzkzNjgxLCJleHAiOjE2Nzc0ODAwODF9.bNsR8-Sg8TnkKdpewzcmieHnd8VRXjly-S8c3adCGPw",
+    //   },
+    // });
+    // return data;
   } catch (e) {
     console.log(e);
+    alert("ㅜㅜㅜㅜ");
   }
 };
